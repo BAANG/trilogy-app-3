@@ -1,12 +1,18 @@
-// content.js
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    if (request.message === "clicked_browser_action") {
-      var firstHref = $("a[href^='http']").eq(0).attr("href");
+var firstHref = $("a[href^='http']").eq(0).attr("href");
 
-      console.log(firstHref);
+// Wait for message to be received from background.js
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        switch (request.message) {
+            case "clicked_browser_action":
+                console.log(firstHref);
+                break;
+            case "query_tabs":
+                console.log(firstHref, request.time)
+        }
     }
-  }
 );
+
+
 
 
