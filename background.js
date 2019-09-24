@@ -8,3 +8,15 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
     });
   });
+
+
+var timeCount = {};
+
+ function queryTabs () {
+   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+     var activeTabs = tabs
+     chrome.tabs.sendMessage(activeTabs, {"message": "query_tabs"})
+   })
+ }
+
+ setInterval(queryTabs, 10000)
