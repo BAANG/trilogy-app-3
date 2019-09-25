@@ -27,7 +27,8 @@ chrome.runtime.onMessage.addListener(
                 console.log(firstHref);
                 break;
             case "query_tabs":
-                console.log(extractHostname(firstHref), request.time)
+                console.log(extractHostname(firstHref), request.time);
+                console.log("\n", request)
         }
     }
 );
